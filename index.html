@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>A Little Star Is On The Way · Baby Mirza</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Pinyon+Script&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #fbf3e4;
+    --cream-deep: #f3e6cd;
+    --sky: #c8dceb;
+    --sky-deep: #8caec8;
+    --night: #1a2942;
+    --night-deep: #0f1a2e;
+    --gold: #c9a96e;
+    --gold-light: #e6c98f;
+    --blush: #f2cfc4;
+    --mint: #cee0d2;
+    --ink: #1a2942;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body { overflow-x: hidden; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    color: var(--ink);
+    background: var(--cream);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .display { font-family: 'Cormorant Garamond', serif; font-weight: 300; letter-spacing: 0.02em; }
+  .script { font-family: 'Pinyon Script', cursive; font-weight: 400; }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    background:
+      radial-gradient(ellipse at 20% 10%, rgba(201, 169, 110, 0.18), transparent 50%),
+      radial-gradient(ellipse at 80% 80%, rgba(140, 174, 200, 0.25), transparent 50%),
+      linear-gradient(180deg, #0f1a2e 0%, #1a2942 45%, #2d4163 75%, #5a7a9c 100%);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 24px 100px;
+  }
+
+  .stars { position: absolute; inset: 0; pointer-events: none; }
+  .star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0;
+    animation: twinkle 4s ease-in-out infinite;
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); }
+  }
+
+  .moon {
+    position: absolute;
+    top: 8%;
+    right: 12%;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #fff8e7 0%, #f3e6cd 50%, #d9c79e 100%);
+    box-shadow:
+      0 0 60px rgba(243, 230, 205, 0.4),
+      0 0 120px rgba(243, 230, 205, 0.2),
+      inset 0 0 20px rgba(0,0,0,0.08);
+    animation: float_moon 8s ease-in-out infinite;
+  }
+  .moon::before, .moon::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.04);
+  }
+  .moon::before { width: 18px; height: 18px; top: 22%; left: 30%; }
+  .moon::after { width: 12px; height: 12px; top: 55%; left: 60%; }
+
+  @keyframes float_moon {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  .cloud {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    filter: blur(8px);
+    animation: drift 30s linear infinite;
+  }
+  .cloud_1 { width: 200px; height: 60px; top: 20%; left: -200px; animation-duration: 40s; }
+  .cloud_2 { width: 280px; height: 80px; top: 45%; left: -280px; animation-duration: 55s; animation-delay: -20s; }
+  .cloud_3 { width: 160px; height: 50px; top: 70%; left: -160px; animation-duration: 35s; animation-delay: -10s; }
+
+  @keyframes drift {
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(100vw + 280px)); }
+  }
+
+  .hero_content {
+    position: relative;
+    z-index: 5;
+    text-align: center;
+    color: var(--cream);
+    max-width: 600px;
+    animation: fade_up 1.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  @keyframes fade_up {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 24px;
+    color: var(--gold-light);
+    opacity: 0;
+    animation: fade_up 1.4s 0.3s forwards;
+  }
+  .ornament_line {
+    width: 50px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-light));
+  }
+  .ornament_line.right { background: linear-gradient(90deg, var(--gold-light), transparent); }
+  .ornament_diamond {
+    width: 8px; height: 8px;
+    transform: rotate(45deg);
+    background: var(--gold-light);
+  }
+
+  .hero_tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 14px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fade_up 1.4s 0.5s forwards;
+  }
+
+  .hero_script {
+    font-family: 'Pinyon Script', cursive;
+    font-size: clamp(48px, 12vw, 88px);
+    line-height: 1;
+    color: var(--gold-light);
+    margin-bottom: 8px;
+    text-shadow: 0 0 40px rgba(230, 201, 143, 0.3);
+    opacity: 0;
+    animation: fade_up 1.4s 0.7s forwards;
+  }
+
+  .hero_title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(28px, 7vw, 44px);
+    letter-spacing: 0.04em;
+    margin-bottom: 36px;
+    color: var(--cream);
+    opacity: 0;
+    animation: fade_up 1.4s 0.9s forwards;
+  }
+
+  .hero_announce {
+    margin-top: 8px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(15px, 3.8vw, 18px);
+    color: rgba(251, 243, 228, 0.75);
+    line-height: 1.7;
+    max-width: 440px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0;
+    animation: fade_up 1.4s 1.1s forwards;
+  }
+
+  .hero_name {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: clamp(18px, 4.5vw, 22px);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-top: 6px;
+    display: block;
+  }
+
+  .scroll_hint {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(251, 243, 228, 0.5);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    animation: pulse 2.5s ease-in-out infinite;
+  }
+  .scroll_hint::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 30px;
+    background: linear-gradient(180deg, var(--gold-light), transparent);
+    margin: 12px auto 0;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.4; transform: translate(-50%, 0); }
+    50% { opacity: 0.8; transform: translate(-50%, 4px); }
+  }
+
+  /* COUNTDOWN */
+  .countdown_section {
+    padding: 80px 24px;
+    background: linear-gradient(180deg, #5a7a9c 0%, #c8dceb 30%, var(--cream) 100%);
+    text-align: center;
+  }
+
+  .section_label {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .section_title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(32px, 7vw, 48px);
+    color: var(--night);
+    margin-bottom: 40px;
+    letter-spacing: 0.02em;
+  }
+
+  .countdown {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    max-width: 500px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+  }
+
+  .count_tile {
+    flex: 1 1 0;
+    min-width: 70px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(201, 169, 110, 0.3);
+    border-radius: 16px;
+    padding: 20px 8px;
+    box-shadow:
+      0 10px 30px rgba(26, 41, 66, 0.08),
+      inset 0 1px 0 rgba(255,255,255,0.6);
+  }
+
+  .count_num {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(34px, 8vw, 48px);
+    color: var(--night);
+    line-height: 1;
+    letter-spacing: 0;
+  }
+
+  .count_lbl {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 8px;
+    font-weight: 500;
+  }
+
+  .countdown_final {
+    margin-top: 30px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--night);
+    display: none;
+  }
+
+  /* DETAILS */
+  .details_section {
+    padding: 100px 24px;
+    background: var(--cream);
+    position: relative;
+  }
+
+  .details_section::before {
+    content: '';
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Cg fill='none' stroke='%23c9a96e' stroke-width='1'%3E%3Cpath d='M30 5 L35 25 L55 30 L35 35 L30 55 L25 35 L5 30 L25 25 Z'/%3E%3Ccircle cx='30' cy='30' r='3'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: contain;
+    opacity: 0.5;
+  }
+
+  .details_card {
+    max-width: 480px;
+    margin: 60px auto 0;
+    background: white;
+    padding: 50px 32px;
+    text-align: center;
+    border-radius: 4px;
+    position: relative;
+    box-shadow:
+      0 20px 60px rgba(26, 41, 66, 0.08),
+      0 1px 0 rgba(201, 169, 110, 0.3);
+  }
+
+  .details_card::before, .details_card::after {
+    content: '';
+    position: absolute;
+    width: 30px; height: 30px;
+    border: 1px solid var(--gold);
+  }
+  .details_card::before {
+    top: 12px; left: 12px;
+    border-right: none; border-bottom: none;
+  }
+  .details_card::after {
+    bottom: 12px; right: 12px;
+    border-left: none; border-top: none;
+  }
+
+  .corner_tr, .corner_bl {
+    position: absolute;
+    width: 30px; height: 30px;
+    border: 1px solid var(--gold);
+  }
+  .corner_tr {
+    top: 12px; right: 12px;
+    border-left: none; border-bottom: none;
+  }
+  .corner_bl {
+    bottom: 12px; left: 12px;
+    border-right: none; border-top: none;
+  }
+
+  .details_greeting {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--gold);
+    margin-bottom: 18px;
+  }
+
+  .details_message {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 22px;
+    line-height: 1.5;
+    color: var(--night);
+    margin-bottom: 32px;
+  }
+
+  .details_divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 28px 0;
+    color: var(--gold);
+  }
+  .details_divider .line {
+    width: 40px; height: 1px;
+    background: var(--gold);
+  }
+
+  .details_row { margin: 24px 0; }
+  .details_row .key {
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+  .details_row .val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    color: var(--night);
+    font-weight: 400;
+  }
+  .details_row .val.big {
+    font-size: 30px;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+  }
+
+  /* WISHES */
+  .wishes_section {
+    padding: 80px 24px 100px;
+    background: linear-gradient(180deg, var(--cream) 0%, #f3e6cd 100%);
+  }
+
+  .wish_wrap { max-width: 560px; margin: 0 auto; }
+
+  .wish_form {
+    background: white;
+    padding: 28px 22px;
+    border-radius: 14px;
+    box-shadow: 0 12px 40px rgba(26, 41, 66, 0.08);
+    margin-bottom: 30px;
+    border: 1px solid rgba(201, 169, 110, 0.25);
+  }
+
+  .wish_form input,
+  .wish_form textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #e6dcc7;
+    border-radius: 8px;
+    font-family: 'Jost', sans-serif;
+    font-size: 15px;
+    color: var(--night);
+    background: var(--cream);
+    margin-bottom: 12px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .wish_form input:focus,
+  .wish_form textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.15);
+  }
+  .wish_form textarea {
+    min-height: 90px;
+    resize: vertical;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-style: italic;
+  }
+
+  .wish_btn {
+    width: 100%;
+    padding: 14px;
+    background: var(--night);
+    color: var(--cream);
+    border: none;
+    border-radius: 8px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .wish_btn:hover { background: var(--gold); }
+  .wish_btn:active { transform: scale(0.98); }
+  .wish_btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+  .wishes_list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .wish_card {
+    background: white;
+    padding: 20px 22px;
+    border-radius: 12px;
+    border-left: 3px solid var(--gold);
+    box-shadow: 0 6px 20px rgba(26, 41, 66, 0.05);
+    animation: fade_up 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .wish_msg {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--night);
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+
+  .wish_author {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+  .wish_author::before {
+    content: '✦ ';
+    margin-right: 4px;
+  }
+
+  .wish_empty {
+    text-align: center;
+    color: rgba(26, 41, 66, 0.5);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 17px;
+    padding: 30px 0;
+  }
+
+  .wish_status {
+    text-align: center;
+    font-size: 12px;
+    color: rgba(26, 41, 66, 0.5);
+    margin-top: 14px;
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  /* CLOSING */
+  .closing {
+    padding: 80px 24px;
+    text-align: center;
+    background: var(--night);
+    color: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .closing::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 30% 40%, rgba(201, 169, 110, 0.15), transparent 50%),
+      radial-gradient(ellipse at 70% 80%, rgba(140, 174, 200, 0.1), transparent 50%);
+  }
+
+  .closing_content {
+    position: relative;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .closing_script {
+    font-family: 'Pinyon Script', cursive;
+    font-size: clamp(36px, 9vw, 56px);
+    color: var(--gold-light);
+    margin-bottom: 14px;
+  }
+
+  .closing_text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 18px;
+    color: rgba(251, 243, 228, 0.8);
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .closing_host {
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-top: 28px;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 480px) {
+    .moon { width: 70px; height: 70px; top: 6%; right: 8%; }
+    .countdown { gap: 8px; }
+    .count_tile { padding: 16px 4px; min-width: 60px; }
+    .details_card { padding: 40px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="stars" id="stars"></div>
+  <div class="cloud cloud_1"></div>
+  <div class="cloud cloud_2"></div>
+  <div class="cloud cloud_3"></div>
+  <div class="moon"></div>
+
+  <div class="hero_content">
+    <div class="ornament">
+      <span class="ornament_line"></span>
+      <span class="ornament_diamond"></span>
+      <span class="ornament_line right"></span>
+    </div>
+    <div class="hero_tagline">You are warmly invited</div>
+    <h1 class="hero_script">A little star</h1>
+    <h2 class="hero_title">is on the way</h2>
+    <p class="hero_announce">
+      Join us as we celebrate the upcoming arrival of<br>
+      the precious baby boy of
+      <span class="hero_name">Usman Mirza</span>
+    </p>
+  </div>
+
+  <div class="scroll_hint">Scroll</div>
+</section>
+
+<!-- COUNTDOWN -->
+<section class="countdown_section">
+  <div class="section_label reveal">Counting the days</div>
+  <h2 class="section_title reveal">Until We Celebrate</h2>
+  <div class="countdown reveal" id="countdown">
+    <div class="count_tile"><div class="count_num" id="d">00</div><div class="count_lbl">Days</div></div>
+    <div class="count_tile"><div class="count_num" id="h">00</div><div class="count_lbl">Hours</div></div>
+    <div class="count_tile"><div class="count_num" id="m">00</div><div class="count_lbl">Min</div></div>
+    <div class="count_tile"><div class="count_num" id="s">00</div><div class="count_lbl">Sec</div></div>
+  </div>
+  <div class="countdown_final" id="countdown_final">The day has arrived</div>
+</section>
+
+<!-- DETAILS -->
+<section class="details_section">
+  <div class="details_card reveal">
+    <span class="corner_tr"></span>
+    <span class="corner_bl"></span>
+
+    <div class="details_greeting">With joyful hearts,</div>
+    <div class="details_message">we invite you to a sweet afternoon to bless our little one</div>
+
+    <div class="details_divider">
+      <span class="line"></span>
+      <span>✦</span>
+      <span class="line"></span>
+    </div>
+
+    <div class="details_row">
+      <div class="key">The Day</div>
+      <div class="val big">Saturday</div>
+      <div class="val">2nd of May</div>
+    </div>
+
+    <div class="details_divider">
+      <span class="line"></span>
+      <span>✦</span>
+      <span class="line"></span>
+    </div>
+
+    <div class="details_row">
+      <div class="key">The Place</div>
+      <div class="val big">Islamabad</div>
+      <div class="val" style="font-style: italic; font-size: 16px; color: rgba(26, 41, 66, 0.6);">venue details to follow</div>
+    </div>
+  </div>
+</section>
+
+<!-- WISHES -->
+<section class="wishes_section">
+  <div class="wish_wrap">
+    <div class="section_label reveal" style="text-align: center;">Leave your blessings</div>
+    <h2 class="section_title reveal" style="text-align: center;">A Wish for Baby</h2>
+
+    <div class="wish_form reveal">
+      <input type="text" id="wish_name" placeholder="Your name" maxlength="40" />
+      <textarea id="wish_msg" placeholder="Write a sweet wish or blessing..." maxlength="280"></textarea>
+      <button class="wish_btn" id="wish_submit">Send Blessing</button>
+      <div class="wish_status" id="wish_status"></div>
+    </div>
+
+    <div class="wishes_list" id="wishes_list">
+      <div class="wish_empty">Loading blessings...</div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="closing">
+  <div class="closing_content">
+    <div class="closing_script">With Love</div>
+    <p class="closing_text">
+      Your presence is the only gift we need.<br>
+      We cannot wait to celebrate this beautiful chapter with you.
+    </p>
+    <div class="closing_host">Usman Mirza & Family</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- FIREBASE CONFIG: paste your config object below              -->
+<!-- ============================================================ -->
+<script type="module">
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js';
+  import {
+    getFirestore, collection, addDoc, query, orderBy, onSnapshot, serverTimestamp
+  } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js';
+
+  // ============================================================
+  // PASTE YOUR FIREBASE CONFIG OBJECT HERE
+  // (Replace the values below with the ones from your Firebase project)
+  // ============================================================
+  const firebaseConfig = {
+    apiKey: "PASTE_YOUR_API_KEY_HERE",
+    authDomain: "PASTE_YOUR_AUTH_DOMAIN_HERE",
+    projectId: "PASTE_YOUR_PROJECT_ID_HERE",
+    storageBucket: "PASTE_YOUR_STORAGE_BUCKET_HERE",
+    messagingSenderId: "PASTE_YOUR_SENDER_ID_HERE",
+    appId: "PASTE_YOUR_APP_ID_HERE"
+  };
+  // ============================================================
+
+  const $list = document.getElementById('wishes_list');
+  const $name = document.getElementById('wish_name');
+  const $msg = document.getElementById('wish_msg');
+  const $btn = document.getElementById('wish_submit');
+  const $status = document.getElementById('wish_status');
+
+  function escapeHtml(s) {
+    return s.replace(/[&<>"']/g, c => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[c]));
+  }
+
+  function render(wishes) {
+    if (!wishes || wishes.length === 0) {
+      $list.innerHTML = '<div class="wish_empty">Be the first to leave a blessing</div>';
+      return;
+    }
+    $list.innerHTML = wishes.map(w => `
+      <div class="wish_card">
+        <div class="wish_msg">"${escapeHtml(w.message || '')}"</div>
+        <div class="wish_author">${escapeHtml(w.name || 'Anonymous')}</div>
+      </div>
+    `).join('');
+  }
+
+  let db = null;
+  try {
+    if (firebaseConfig.apiKey.startsWith('PASTE_')) {
+      $list.innerHTML = '<div class="wish_empty">Firebase setup pending. Once the config is added, blessings will appear here live.</div>';
+    } else {
+      const app = initializeApp(firebaseConfig);
+      db = getFirestore(app);
+
+      // Live listener: updates the list automatically when anyone adds a wish
+      const q = query(collection(db, 'wishes'), orderBy('createdAt', 'desc'));
+      onSnapshot(q, (snap) => {
+        const wishes = [];
+        snap.forEach(doc => wishes.push(doc.data()));
+        render(wishes);
+      }, (err) => {
+        console.error('Firestore listener error:', err);
+        $list.innerHTML = '<div class="wish_empty">Could not load blessings. Please refresh.</div>';
+      });
+    }
+  } catch (e) {
+    console.error('Firebase init failed:', e);
+    $list.innerHTML = '<div class="wish_empty">Firebase setup pending.</div>';
+  }
+
+  $btn.addEventListener('click', async () => {
+    const name = $name.value.trim();
+    const message = $msg.value.trim();
+
+    if (!name || !message) {
+      $status.textContent = 'Please add your name and a wish';
+      setTimeout(() => $status.textContent = '', 2200);
+      return;
+    }
+    if (!db) {
+      $status.textContent = 'Sending is temporarily unavailable';
+      setTimeout(() => $status.textContent = '', 2200);
+      return;
+    }
+
+    $btn.disabled = true;
+    $btn.textContent = 'Sending...';
+    try {
+      await addDoc(collection(db, 'wishes'), {
+        name: name,
+        message: message,
+        createdAt: serverTimestamp()
+      });
+      $name.value = '';
+      $msg.value = '';
+      $btn.textContent = 'Thank you ✦';
+      setTimeout(() => {
+        $btn.textContent = 'Send Blessing';
+        $btn.disabled = false;
+      }, 1800);
+    } catch (e) {
+      console.error('Send failed:', e);
+      $btn.textContent = 'Try again';
+      setTimeout(() => {
+        $btn.textContent = 'Send Blessing';
+        $btn.disabled = false;
+      }, 2000);
+    }
+  });
+</script>
+
+<!-- Other UI scripts (stars, countdown, reveal, parallax) -->
+<script>
+  (function generateStars() {
+    const container = document.getElementById('stars');
+    const count = 90;
+    let html = '';
+    for (let i = 0; i < count; i++) {
+      const size = Math.random() * 2.5 + 0.5;
+      const top = Math.random() * 100;
+      const left = Math.random() * 100;
+      const delay = Math.random() * 4;
+      const duration = 3 + Math.random() * 3;
+      html += `<span class="star" style="top:${top}%;left:${left}%;width:${size}px;height:${size}px;animation-delay:${delay}s;animation-duration:${duration}s;"></span>`;
+    }
+    container.innerHTML = html;
+  })();
+
+  (function startCountdown() {
+    // Saturday May 2nd, 2026 at 4:00 PM Pakistan Time (PKT = UTC+5)
+    // 4:00 PM PKT = 11:00 UTC
+    const target = new Date(Date.UTC(2026, 4, 2, 11, 0, 0));
+    const $d = document.getElementById('d');
+    const $h = document.getElementById('h');
+    const $m = document.getElementById('m');
+    const $s = document.getElementById('s');
+    const $final = document.getElementById('countdown_final');
+    const $cd = document.getElementById('countdown');
+
+    function pad(n) { return String(n).padStart(2, '0'); }
+
+    function tick() {
+      const now = new Date();
+      let diff = target - now;
+      if (diff <= 0) {
+        $cd.style.display = 'none';
+        $final.style.display = 'block';
+        return;
+      }
+      const days = Math.floor(diff / 86400000); diff -= days * 86400000;
+      const hrs = Math.floor(diff / 3600000); diff -= hrs * 3600000;
+      const min = Math.floor(diff / 60000); diff -= min * 60000;
+      const sec = Math.floor(diff / 1000);
+      $d.textContent = pad(days);
+      $h.textContent = pad(hrs);
+      $m.textContent = pad(min);
+      $s.textContent = pad(sec);
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+
+  (function reveal() {
+    const els = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    els.forEach(el => io.observe(el));
+  })();
+
+  (function parallax() {
+    const moon = document.querySelector('.moon');
+    if (!moon) return;
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const y = window.scrollY * 0.15;
+          moon.style.transform = `translateY(${-y}px)`;
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>
